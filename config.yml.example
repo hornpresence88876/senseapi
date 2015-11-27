@@ -1,0 +1,15 @@
+---
+st:
+  key: "ST_KEY_HERE
+  token: "ST_TOKEN_HERE"
+db:
+  adapter: 'mysql'
+  host: 'localhost'
+  user: 'DATABASE_USER'
+  pass: 'DATABASE_PASSWORD'
+  name: 'DATABASE'
+endpoints:
+  - 'temp'
+  - 'humidity'
+  - 'lux'
+  - 'power'
