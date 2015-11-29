@@ -8,7 +8,8 @@ require 'date'
 require 'yaml'
 
 # First we must load the config
-CONFIG = YAML::load_file(File.join(__dir__, 'config.yml'))
+# CONFIG = YAML::load_file(File.join(__dir__, 'config.yml')) # This doesnt work on Ruby 1.9
+CONFIG = YAML::load_file(File.join(File.dirname(File.expand_path(__FILE__)), 'config.yml'))
 
 # SmartThings Configuration
 ST_BASE  = "https://graph.api.smartthings.com:443/api/smartapps/installations"
