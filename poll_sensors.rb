@@ -11,7 +11,7 @@ require 'yaml'
 CONFIG = YAML.load_file('config.yml')
 
 # SmartThings Configuration
-ST_BASE  = "https://graph.api.smartthings.com/api/smartapps/installations/"
+ST_BASE  = "https://graph.api.smartthings.com:443/api/smartapps/installations"
 ST_KEY   = CONFIG['st']['key']
 ST_TOKEN = CONFIG['st']['token']
 ST_URL   = "#{ST_BASE}/#{ST_KEY}"
@@ -22,16 +22,18 @@ DB_HOST    = CONFIG['db']['host']
 DB_USER    = CONFIG['db']['user']
 DB_PASS    = CONFIG['db']['pass']
 DB_NAME    = CONFIG['db']['name']
+DB_TABLE   = CONFIG['db']['table']
 
 # Endpoints
 endpoints = []
 
 DB = Sequel.connect(:adapter => DB_ADAPTER, :user => DB_USER, :host => DB_HOST, :database => DB_NAME, :password => DB_PASS)
 
-sensors = DB[DB_NAME.to_sym]
+sensors = DB[DB_TABLE.to_sym]
 @timestamp = Time.now.strftime("%Y-%m-%dT%H:%M:%S")
 
 endpoints = CONFIG['endpoints']
+
 endpoints.each do |e|
   http = Curl.get("#{ST_URL}/#{e}") do |http|
     http.headers['Authorization'] = "Bearer #{ST_TOKEN}"
