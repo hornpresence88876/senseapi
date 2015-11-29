@@ -8,7 +8,7 @@ require 'date'
 require 'yaml'
 
 # First we must load the config
-CONFIG = YAML.load_file('config.yml')
+CONFIG = YAML::load_file(File.join(__dir__, 'config.yml'))
 
 # SmartThings Configuration
 ST_BASE  = "https://graph.api.smartthings.com:443/api/smartapps/installations"
