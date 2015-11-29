@@ -45,7 +45,7 @@ endpoints.each do |e|
     primary_key :id
     DateTime :time
     String :name
-    Float :value
+    String :value
     String :unit
     String :endpoint
   end
